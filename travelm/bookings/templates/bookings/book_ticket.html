@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Book Ticket</h2>
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ travel_option.get_type_display }}</h5>
+        <p class="card-text">
+            From: {{ travel_option.source }}<br>
+            To: {{ travel_option.destination }}<br>
+            Date: {{ travel_option.date_time|date:"F d, Y H:i" }}<br>
+            Price: ${{ travel_option.price }}<br>
+            Available Seats: {{ travel_option.available_seats }}
+        </p>
+    </div>
+</div>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+</form>
+{% endblock %}
